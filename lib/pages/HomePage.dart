@@ -78,104 +78,108 @@ class HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0.0,
       title: Text(titleToShow , style:  TextStyle(color: Color(0xFF8b2926)),),
       backgroundColor: Colors.white.withOpacity(0.7),
       iconTheme: IconThemeData(color: Color(0xFF8b2926)),
       // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
       actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.notifications_none,
-              color: Color(0xFF8b2926),
-            ),
-            onPressed: () {
-              // do something
-            },
-          ),
-        IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Color(0xFF8b2926),
-            ),
-            onPressed: () {
-              // do something
-            },
-          ),
+//          IconButton(
+//            icon: Icon(
+//              Icons.notifications_none,
+//              color: Color(0xFF8b2926),
+//            ),
+//            onPressed: () {
+//              // do something
+//            },
+//          ),
+//        IconButton(
+//            icon: Icon(
+//              Icons.search,
+//              color: Color(0xFF8b2926),
+//            ),
+//            onPressed: () {
+//              // do something
+//            },
+//          ),
         ],
     ),
 
-      drawer: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Color(0xFF545454), //This will change the drawer background to blue.
-          //other styles
-        ),
-        child: Drawer(
-          // Add a ListView to the drawer. This ensures the user can scroll
-          // through the options in the drawer if there isn't enough vertical
-          // space to fit everything.
-          child:
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child:  ListView(shrinkWrap: true,
+      drawer: Container(
+        width: MediaQuery.of(context).size.width*0.6,
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Color(0xFF545454), //This will change the drawer background to blue.
+            //other styles
+          ),
+          child: Drawer(
+            // Add a ListView to the drawer. This ensures the user can scroll
+            // through the options in the drawer if there isn't enough vertical
+            // space to fit everything.
+            child:
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 25),
+                  child:  ListView(shrinkWrap: true,
 
-                  children: <Widget>[
-                    for (Menu m in data.data.sideMenu)
-                      ListTile(
-                        title: Directionality(
-                            textDirection: languageCode!='ar'? TextDirection.ltr:TextDirection.rtl,
-                            child: Text(m.langString.toJson()[languageCode],style: TextStyle(color: Colors.white),)),
-                        tileColor: Color(0xFF545454),
-                        leading:m.icon!= null? Image.file(File(m.iconLocalPath), width: 30.0, height: 30.0): m.title=='Language'? Icon(Icons.language):null,
-                        onTap: () {
+                    children: <Widget>[
+                      for (Menu m in data.data.sideMenu)
+                        ListTile(
+                          title: Directionality(
+                              textDirection: languageCode!='ar'? TextDirection.ltr:TextDirection.rtl,
+                              child: Text(m.langString.toJson()[languageCode],style: TextStyle(color: Colors.white),)),
+                          tileColor: Color(0xFF545454),
+                          leading:m.icon!= null? Image.file(File(m.iconLocalPath), width: 30.0, height: 30.0): m.title=='Language'? Icon(Icons.language):null,
+                          onTap: () {
 
-                          if ('Language'== m.title){
+                            if ('Language'== m.title){
 
-                            SharedPreferences.getInstance().then((value) {
-                              if (languageCode == 'en'){
-                                value.setString(CURRENT_LANGUAGE_CODE, 'ar');
-                                MyApp.setLocale(context, Locale('ar'));
-                                setState(() {
-                                  languageCode ='ar';
-                                });
-                              }
-                              else if (languageCode == 'ar'){
-                                value.setString(CURRENT_LANGUAGE_CODE, 'en');
-                                MyApp.setLocale(context, Locale('en'));
-                                setState(() {
-                                  languageCode ='en';
-                                });
-                              }
+                              SharedPreferences.getInstance().then((value) {
+                                if (languageCode == 'en'){
+                                  value.setString(CURRENT_LANGUAGE_CODE, 'ar');
+                                  MyApp.setLocale(context, Locale('ar'));
+                                  setState(() {
+                                    languageCode ='ar';
+                                  });
+                                }
+                                else if (languageCode == 'ar'){
+                                  value.setString(CURRENT_LANGUAGE_CODE, 'en');
+                                  MyApp.setLocale(context, Locale('en'));
+                                  setState(() {
+                                    languageCode ='en';
+                                  });
+                                }
 
 
-                            });
-                          } else{
-                            loadUrl( m.link.toJson()[languageCode], m.maintanancePage, m.langString.toJson()[languageCode]);
-                          }
+                              });
+                            } else{
+                              loadUrl( m.link.toJson()[languageCode], m.maintanancePage, m.langString.toJson()[languageCode]);
+                            }
 
-                          Navigator.of(context).pop();
-                        },
-                      )
+                            Navigator.of(context).pop();
+                          },
+                        )
 
-                  ],
+                    ],
+                  ),
+
                 ),
-
-              ),
-              SizedBox(height: 8,),
-              Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text('Copyright \u00a9 2016 DOF. All right reserved',style: TextStyle(color: Colors.white),))
+                SizedBox(height: 8,),
+                Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Text('Copyright \u00a9 2016 DOF.\nAll right reserved',style: TextStyle(color: Colors.white),))
 //              ),
 
-            ],
+              ],
+            ),
           ),
         ),
       ),
       body: WillPopScope(
         child: Builder(builder: (BuildContext context) {
           return Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(0.0),
             child: WebView(
               initialUrl: urlToLoad,
               javascriptMode: JavascriptMode.unrestricted,

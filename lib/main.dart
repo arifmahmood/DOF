@@ -68,8 +68,7 @@ class _MyAppState extends State<MyApp> {
         routes: <String, WidgetBuilder>{
           HOME_SCREEN: (BuildContext context) => new HomeScreen(ModalRoute.of(context).settings.arguments),
           VIDEO_SPALSH: (BuildContext context) => new VideoSplashScreen(ModalRoute.of(context).settings.arguments),
-          SETUP_SPLASH: (BuildContext context) => new SetupSplashScreen(),
-//      ANIMATED_SPALSH: (BuildContext context) => new AnimatedSplashScreen()
+          SETUP_SPLASH: (BuildContext context) => new SetupSplashScreen()
         },
       );
     }
