@@ -81,6 +81,7 @@ class SplashScreenState extends State<SetupSplashScreen> {
                   });
                 }));
                 preferences.setString(menu.icon, menu.iconLocalPath);
+                data.data.allMenuData[menu.title]= menu;
               }
 
               for (Menu menu in data.data.bottomMenu){
@@ -99,6 +100,10 @@ class SplashScreenState extends State<SetupSplashScreen> {
                   });
                 }));
                 preferences.setString(menu.icon, menu.iconLocalPath);
+                data.data.allMenuData[menu.title]= menu;
+              }
+              if (data.data.bottomMenu[2].title != 'Home') {
+                data.data.bottomMenu.insert(2, Menu(title: 'Home'));
               }
 
               for (MainLogos logo in data.data.mainLogos){
@@ -128,12 +133,16 @@ class SplashScreenState extends State<SetupSplashScreen> {
             data.data.settings.videoPathLocal =  preferences.getString(data.data.settings.videoLink);
             for (Menu menu in data.data.sideMenu){
               menu.iconLocalPath =  preferences.getString(menu.icon);
+              data.data.allMenuData[menu.title]= menu;
             }
 
             for (Menu menu in data.data.bottomMenu){
               menu.iconLocalPath =  preferences.getString(menu.icon);
+              data.data.allMenuData[menu.title]= menu;
             }
-
+            if (data.data.bottomMenu[2].title != 'Home') {
+              data.data.bottomMenu.insert(2, Menu(title: 'Home'));
+            }
             for (MainLogos logo in data.data.mainLogos){
               logo.logoLocalPath =  preferences.getString(logo.logo);
             }
