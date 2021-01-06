@@ -23,6 +23,8 @@ dependencies:
   webview_flutter: ^1.0.7
   fluttertoast: ^7.1.6
   flutter_easyloading: ^2.2.2
+  widget_to_image: ^1.0.4
+  bubble_widget: ^0.0.2
 
 dev_dependencies:
   flutter_test:
