@@ -12,29 +12,54 @@ class HomeScreenNative extends StatefulWidget {
 class HomeScreenNativeState extends State<HomeScreenNative> {
   @override
   Widget build(BuildContext context) {
-    return new Container(
-       child: Image.asset(
-          'assets/home.jpg',
-        )
-    );
-    /*return new Container(
-      width: MediaQuery.of(context).size.width *.5,
-        child: Padding(
-          padding:  const EdgeInsets.all(50),
-          child: Stack(children: <Widget>[
-            Positioned.fill(
-              child: CustomPaint(
-                painter: RoundedBorderPainter(
-                  radius: 20,
-                  strokeWidth: 2,
-                  bottomBorderColor: Colors.red,
-                  leftBorderColor: Colors.red,
-                  rightBorderColor: Colors.red,
-                  topBorderColor: Colors.red,
-                ),
-              ),
-            ),
-          ],),
-        ));*/
+
+    return
+      Column(
+        children: [
+
+          Container(
+
+            width: MediaQuery.of(context).size.width *.5,
+            height: MediaQuery.of(context).size.height *.25,
+          ),
+
+          Row(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width *.5,
+                height: MediaQuery.of(context).size.height *.25,
+                child: Stack(children: <Widget>[
+                  Positioned.fill(
+                    child: Padding(
+                      padding: EdgeInsets.all(0),
+                      child: CustomPaint(
+                        painter: RoundedBorderPainter(
+                          radius: 20,
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],)),
+              Container(
+                width: MediaQuery.of(context).size.width *.5,
+                height: MediaQuery.of(context).size.height *.25,
+                child: Stack(children: <Widget>[
+                  Positioned.fill(
+                    child: Padding(
+                      padding: EdgeInsets.all(0 ),
+                      child: CustomPaint(
+                        painter: RoundedBorderPainter(
+                          radius: 20,
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],)),
+            ],
+          ),
+        ],
+      );
   }
 }

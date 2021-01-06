@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:avatar_glow/avatar_glow.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:DOF/network/response/ResponseData.dart';
@@ -41,6 +43,17 @@ class HomeScreenState extends State<HomeScreen> {
   var screen = "APP";
 
   Timer timer = null;
+
+  Map stringResource = {
+    "CopyRight": {
+      "en": "Copyright \u00a9 2016 DOF\nAll right reserved",
+      "ar": "جميع الحقوق محفوظة لدائرة المالية © 2016"
+    },
+    "Home": {
+      "en": "Home",
+      "ar": "الصفحة الرئيسية"
+    }
+  };
 
   loadUrl(String url, String maintainance, String title) {
     EasyLoading.show(status: 'loading...');
@@ -186,7 +199,7 @@ class HomeScreenState extends State<HomeScreen> {
                 Align(
                     alignment: Alignment.bottomCenter,
                     child: Text(
-                      'Copyright \u00a9 2016 DOF\nAll right reserved',
+                      stringResource['CopyRight'][languageCode],
                       style: TextStyle(color: Colors.white),
                     ))
 //              ),
@@ -241,17 +254,21 @@ class HomeScreenState extends State<HomeScreen> {
                 : Stack(
                   children: [
                     Center(
-                      child: Image.asset(
-                        'assets/home.png',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        alignment: Alignment.center,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child: Image.asset(
+                          'assets/home.png',
+                          fit: BoxFit.fill,
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                        ),
                       ),
                     ),
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .20,
+                          height: MediaQuery.of(context).size.height * .15,
                           width: MediaQuery.of(context).size.width,
                         ),
                         Row(
@@ -336,8 +353,8 @@ class HomeScreenState extends State<HomeScreen> {
                   icon: m.icon != null
                       ? Image.file(
                       File(m.iconLocalPath), width: 25.0, height: 25.0)
-                      : Icon(Icons.account_balance, color: Colors.amber[800],),
-                  label: m.title == 'Home'?'':m.langString.toJson()[languageCode],
+                      : Icon(EvaIcons.gridOutline, size: 25, color: Color(0xff171c22),),
+                  label: m.title == 'Home'?stringResource['Home'][languageCode] :m.langString.toJson()[languageCode],
                 )
 
         ],
@@ -348,7 +365,7 @@ class HomeScreenState extends State<HomeScreen> {
           if (data.data.bottomMenu[value].title =='Home'){
             setState(() {
               screen = 'APP';
-              titleToShow ='Home';
+              titleToShow = stringResource['Home'][languageCode];
               EasyLoading.dismiss();
               _selectedIndex = value;
             });
@@ -405,6 +422,7 @@ class HomeScreenState extends State<HomeScreen> {
       String language = value.getString(CURRENT_LANGUAGE_CODE);
       setState(() {
         languageCode = language == null ? 'ar' : language;
+        titleToShow = stringResource['Home'][languageCode];
       });
     });
 

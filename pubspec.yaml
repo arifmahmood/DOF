@@ -23,6 +23,8 @@ dependencies:
   webview_flutter: ^1.0.7
   fluttertoast: ^7.1.6
   flutter_easyloading: ^2.2.2
+  eva_icons_flutter: ^2.0.1
+  avatar_glow: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +49,7 @@ flutter:
     - images/
     - assets/translations/
     - assets/home.png
+    - assets/home.jpeg
 
   # example:
   # fonts:
