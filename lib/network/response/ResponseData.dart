@@ -21,6 +21,7 @@ class Data {
   List<MainLogos> mainLogos;
   List<Menu> bottomMenu;
   List<Menu> sideMenu;
+  Map<String, Menu> allMenuData = {};
 
   Data({this.settings, this.mainLogos, this.bottomMenu, this.sideMenu});
 

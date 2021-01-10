@@ -1,3 +1,5 @@
+import 'package:DOF/pages/MainHomePage.dart';
+import 'package:DOF/pages/home_page_native.dart';
 import 'package:flutter/material.dart';
 import 'package:DOF/pages/SetupSplashScreen.dart';
 import 'package:DOF/util/Constant.dart';
@@ -66,10 +68,10 @@ class _MyAppState extends State<MyApp> {
         builder: EasyLoading.init(),
         home: new SetupSplashScreen(),
         routes: <String, WidgetBuilder>{
-          HOME_SCREEN: (BuildContext context) => new HomeScreen(ModalRoute.of(context).settings.arguments),
+//          HOME_SCREEN: (BuildContext context) => new HomeScreen(ModalRoute.of(context).settings.arguments),
+          HOME_SCREEN: (BuildContext context) => new MainHomePage(),
           VIDEO_SPALSH: (BuildContext context) => new VideoSplashScreen(ModalRoute.of(context).settings.arguments),
-          SETUP_SPLASH: (BuildContext context) => new SetupSplashScreen(),
-//      ANIMATED_SPALSH: (BuildContext context) => new AnimatedSplashScreen()
+          SETUP_SPLASH: (BuildContext context) => new SetupSplashScreen()
         },
       );
     }
