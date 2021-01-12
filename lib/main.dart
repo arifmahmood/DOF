@@ -66,10 +66,10 @@ class _MyAppState extends State<MyApp> {
         ],
         locale: locale,
         builder: EasyLoading.init(),
-        home: new SetupSplashScreen(),
+        home: new MainHomePage(),
         routes: <String, WidgetBuilder>{
-//          HOME_SCREEN: (BuildContext context) => new HomeScreen(ModalRoute.of(context).settings.arguments),
-          HOME_SCREEN: (BuildContext context) => new MainHomePage(),
+          HOME_SCREEN: (BuildContext context) => new HomeScreen(ModalRoute.of(context).settings.arguments),
+//          HOME_SCREEN: (BuildContext context) => new MainHomePage(),
           VIDEO_SPALSH: (BuildContext context) => new VideoSplashScreen(ModalRoute.of(context).settings.arguments),
           SETUP_SPLASH: (BuildContext context) => new SetupSplashScreen()
         },
